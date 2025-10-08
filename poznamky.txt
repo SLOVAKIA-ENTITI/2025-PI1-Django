@@ -52,3 +52,12 @@
                         urlpatterns = [
                             path('', views.index, name='index'),
                         ]
+
+
+
+9. Setup Git push/commit: 
+                    $ git config --global user.name "Matúš Paškala" 
+                    $ git config --global user.email "mpaskala08@gmail.com"
+
+10. Do priečinku:
+            $ cd pokus
