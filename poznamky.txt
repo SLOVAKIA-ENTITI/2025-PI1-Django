@@ -1,0 +1,54 @@
+1. Inštalácia Django do python:
+                            pip install Django
+                            pip list
+
+2. Vytvorenie Django projektu:
+                            django-admin startproject nazov_projektu .
+
+3. Nastavenie slovenčiny pre projekt (mysite/settings.py):
+                                                   LANGUAGE_CODE = 'sk'
+                                                   TIME_ZONE = 'Europe/Bratislava' 
+
+4. Spustenie vývojového serveru:
+                            python manage.py runserver
+                            python.exe .\manage.py runserver
+
+5. Vytvorenie aplikácie:
+                    python manage.py startapp skuska
+
+6. Zaregistrovanie aplikácie do projektu (mysite/settings.py):
+                                                    INSTALLED_APPS = [
+                                                    'django.contrib.admin',
+                                                    'django.contrib.auth',
+                                                    'django.contrib.contenttypes',
+                                                    'django.contrib.sessions',
+                                                    'django.contrib.messages',
+                                                    'django.contrib.staticfiles',
+                                                    'nazov_aplikácie',
+                                                ]
+
+7. Vytvorenie jednoduchého views (skuska/views.py):
+                                            from django.shortcuts import render, HttpResponse
+                                            def index(request):
+                                                return HttpResponse('Hello World!')
+                            
+8. Vytvorenie urlpattern:
+    8.1 mysite/urls.py
+
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('skuska/', include('skuska.urls')),
+    ]
+
+    8.2 
+        -vytvoriť súbor urls.py v priečinku aplikácie (skuska):
+        -upraviť urls.py: 
+                        from django.urls import path
+                        from . import views
+
+                        urlpatterns = [
+                            path('', views.index, name='index'),
+                        ]
