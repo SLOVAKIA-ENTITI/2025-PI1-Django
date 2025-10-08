@@ -60,4 +60,20 @@
                     $ git config --global user.email "mpaskala08@gmail.com"
 
 10. Do priečinku:
-            $ cd pokus
+            $ cd pokusp
+
+
+
+
+
+
+11. Template:
+            11.1:
+                Vytvoriť v priečinku aplikácie priečinok templates/nazov_aplikácie
+                V tomto pričink vytvoriť html súbor (napr. index.html)
+            11.2:
+                Upraviť views tak aby používal template  
+                    from django.shortcuts import render
+                    def index(request):
+                        return render(request, 'kalkulacka/index.html')
+ 
