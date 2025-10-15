@@ -77,3 +77,15 @@
                     def index(request):
                         return render(request, 'kalkulacka/index.html')
  
+12. CSS, obrázky:
+                Vytvoriť v priečinoku aplikácie priečinok static/nazov_aplikácie
+                V tomto priečinku vytvoriť CSS (napr. kalkulacka.css)
+                Do tohot priečinku nakopírovať obrázky
+                Do template (index.html) doplniť: 
+                                            úplne na začiatok {% load static %}
+                                            do hlavičky odkaz na style
+                                                    <head>
+                                                        <link rel="stylesheet" href="{% static 'kalkulacka/kalkulacka.css' %}">
+                                                    </head>
+                Obrázok vložiť:
+                        <img src={% static 'kalkulacka/calc.png' %}>

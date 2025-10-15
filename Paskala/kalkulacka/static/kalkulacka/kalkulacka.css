@@ -1,0 +1,38 @@
+body {
+    background-image: url(calc.png);
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: 100px ;
+    background-size: 35%;
+    background-color: red;
+}
+.veci{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: transparent;
+}
+select {
+    background-color: transparent;
+    border: none;
+}
+h1 {
+    color: black;
+    font-weight: bold;
+    margin-bottom: 100px;
+}
+.textik{
+    width: 140px;
+    background-color: transparent;
+    border: 1px solid black;
+}
+h2 {
+    margin-top: -3px;
+}
+.odosli{
+    background-color: transparent;
+    border: 1px solid black;
+    font-weight: bold;
+}

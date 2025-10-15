@@ -1,23 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'kalkulacka/kalkulacka.css' %}">
     <title>Kalkulačka</title>
 </head>
 <body>
     <h1>Kalkulačka</h1>
     <form method="post">
         {% csrf_token %}
-        <input type="text" name="a">
-        <select name="operator">
-            <option value="+">+</option>
-            <option value="-">-</option>
-            <option value="*">*</option>
-            <option value="/">/</option>
-        </select>
-        <input type="text" name="b">
-        <input type="submit">
+        <div class="veci">
+            <input type="text" name="a" class="textik">
+                <select name="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+            <input type="text" name="b" class="textik">
+        </div>
+        <input type="submit" class="odosli">
     </form>
     <h2>{{vysledok}}</h2>
 </body>
