@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'skuska',
     'kalkulacka',
+    'cisla_app',
 ]
 
 MIDDLEWARE = [

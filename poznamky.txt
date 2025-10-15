@@ -75,7 +75,10 @@
                 Upraviť views tak aby používal template  
                     from django.shortcuts import render
                     def index(request):
-                        return render(request, 'kalkulacka/index.html')
+                        sucet = 10 + 5
+                        sucin = 10*5
+                        apar = "Cislo A je parne"
+                        return render(request, 'kalkulacka/index.html', {"sucet":sucet ,"sucin":sucin, "apar":apar})  ALEBO  return render(request, 'kalkulacka/index.html', dict(kluc = sucet))
  
 12. CSS, obrázky:
                 Vytvoriť v priečinoku aplikácie priečinok static/nazov_aplikácie
@@ -89,3 +92,4 @@
                                                     </head>
                 Obrázok vložiť:
                         <img src={% static 'kalkulacka/calc.png' %}>
+

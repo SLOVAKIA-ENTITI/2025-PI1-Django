@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'cisla_app/cisla_app.css' %}">
+    <title>Kalkulačka</title>
+</head>
+<body>
+    <h1>APP CISLA</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="number" name="a">
+        <input type="number" name="b">
+        <input type="submit" class="odosli">
+    </form>
+    <h2>{{vysledok}}</h2>
+    <h2>{{apar}}</h2>
+    <h2>{{bpar}}</h2>
+    <h2>{{aprv}}</h2>
+    <h2>{{bprv}}</h2>
+</body>
+</html>

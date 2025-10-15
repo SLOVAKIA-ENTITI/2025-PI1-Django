@@ -24,4 +24,4 @@ def index(request):
             vysledok = "Chyba"
 
 
-    return render(request, 'kalkulacka/index.html', dict(vysledok = vysledok) )
+    return render(request, 'kalkulacka/index.html', {"vysledok": vysledok} )
