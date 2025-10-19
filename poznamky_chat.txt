@@ -1,0 +1,144 @@
+1. Inštalácia Django
+pip install Django
+pip list
+
+
+➡️ pip install Django nainštaluje framework.
+➡️ pip list ti ukáže, že sa Django pridalo medzi nainštalované knižnice.
+
+2. Vytvorenie projektu
+django-admin startproject nazov_projektu .
+
+
+➡️ startproject vytvorí priečinok s konfiguráciou Django projektu.
+➡️ Bodka (.) na konci znamená: „vytvor projekt v aktuálnom priečinku“.
+
+3. Nastavenie slovenčiny a času
+
+V mysite/settings.py:
+
+LANGUAGE_CODE = 'sk'
+TIME_ZONE = 'Europe/Bratislava'
+
+
+➡️ Nastaví jazyk používateľského rozhrania (napr. dátumy, hlásenia).
+➡️ Zóna zabezpečí správny čas pri ukladaní dát.
+
+4. Spustenie vývojového servera
+python manage.py runserver
+
+
+➡️ Spustí lokálny server (localhost) – stránka sa otvorí na:
+http://127.0.0.1:8000/
+
+5. Vytvorenie aplikácie
+python manage.py startapp skuska
+
+
+➡️ Každá aplikácia = jedna funkčná časť projektu (napr. „skuska“, „blog“, „eshop“).
+➡️ Django projekt môže mať viac aplikácií.
+
+6. Zaregistrovanie aplikácie
+
+V settings.py:
+
+INSTALLED_APPS = [
+    ...
+    'skuska',
+]
+
+
+➡️ Django tak vie, že aplikáciu má načítať a používať jej modely, šablóny, atď.
+
+7. Prvé „view“ – logika stránky
+
+skuska/views.py:
+
+from django.shortcuts import render, HttpResponse
+
+def index(request):
+    return HttpResponse('Hello World!')
+
+
+➡️ index je funkcia, ktorá spracuje požiadavku z prehliadača a vráti odpoveď.
+➡️ HttpResponse() pošle jednoduchý text do prehliadača.
+
+8. URL smerovanie
+a) Hlavné URL (mysite/urls.py)
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('skuska/', include('skuska.urls')),
+]
+
+
+➡️ Hovorí, že keď používateľ ide na /skuska/, Django má hľadať cesty v aplikácii skuska.
+
+b) URL aplikácie (skuska/urls.py)
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+
+
+➡️ Keď používateľ ide na /skuska/, zavolá sa funkcia index z views.py.
+
+9. Nastavenie Gitu
+git config --global user.name "Matúš Paškala"
+git config --global user.email "mpaskala08@gmail.com"
+
+
+➡️ Git si ťa „zapamätá“ ako autora všetkých commitov.
+Potom môžeš projekt commitovať a posielať na GitHub.
+
+11. Templates (HTML šablóny)
+🔹 Vytvor priečinok:
+
+skuska/templates/skuska/index.html
+
+🔹 Upravený view:
+from django.shortcuts import render
+
+def index(request):
+    sucet = 10 + 5
+    sucin = 10 * 5
+    apar = "Cislo A je parne"
+    return render(request, 'skuska/index.html', {
+        "sucet": sucet,
+        "sucin": sucin,
+        "apar": apar
+    })
+
+
+➡️ render() načíta HTML šablónu a pošle do nej údaje (context) vo forme slovníka.
+➡️ V HTML sa k nim dostaneš cez {{ sucet }}, {{ apar }} atď.
+
+12. CSS a obrázky (static files)
+🔹 Vytvor:
+skuska/static/skuska/kalkulacka.css
+skuska/static/skuska/calc.png
+
+🔹 V HTML:
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'skuska/kalkulacka.css' %}">
+</head>
+<body>
+    <img src="{% static 'skuska/calc.png' %}">
+</body>
+
+
+➡️ {% load static %} je Django tag, ktorý umožní používať statické súbory (CSS, JS, obrázky).
+➡️ V ceste vždy uvádzaš názov_aplikácie/názov_súboru.
+
+✅ Zhrnutie:
+
+Django = rámec, kde project = celý web a app = jedna jeho časť.
+
+Logika ide do views, cesty do urls, vzhľad do templates, CSS/obrázky do static.
+
+Server spúšťaš cez python manage.py runserver.
