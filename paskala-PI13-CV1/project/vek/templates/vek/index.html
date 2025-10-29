@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'kalkulacka/kalkulacka.css' %}">
+    <title>Vek</title>
+</head>
+<body>
+    <h1>Vek</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="veci">
+            <input type="text" name="meno" class="textik">
+            <input type="text" name="date" class="textik">
+        </div>
+        <input type="submit" class="odosli">
+    </form>
+    <h2>{{vysledok}}</h2>
+</body>
+</html>
+
+
+
+

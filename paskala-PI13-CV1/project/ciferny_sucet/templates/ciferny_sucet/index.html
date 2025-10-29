@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciferny_sucet</title>
+</head>
+<body>
+    <h1>Ciferný súčet</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="number" name="a">
+        <input type="submit" class="odosli">
+    </form>
+    <h2>Ciferný súčet čísla je: {{vysledok}}</h2>
+</body>
+</html>
