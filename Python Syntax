@@ -1,0 +1,171 @@
+# 🐍 Python Syntax – Základný prehľad
+
+> 📘 Tento dokument slúži ako rýchly ťahák pre základnú syntax a príkazy v jazyku **Python**.  
+> Obsahuje prehľad podmienok, cyklov, chýb, funkcií, tried a ďalších bežných konštrukcií.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 🔹 1. IF / ELIF / ELSE – podmienky
+Používajú sa na rozhodovanie podľa splnenia podmienky.
+
+if podmienka:
+    # vykoná sa, ak je podmienka True
+elif iná_podmienka:
+    # ak prvá neplatí, ale táto áno
+else:
+    # ak nič neplatí
+
+💎Príklad:
+vek = 17
+if vek >= 18:
+    print("Dospelý")
+else:
+    print("Nedospelý")
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🔹 2. FOR – cyklus (prechádzanie prvkov)
+
+for prvok in kolekcia:
+    # niečo urob s prvkom
+
+💎Príklad:
+for i in range(3):
+    print(i)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🔹 3. WHILE – cyklus (opakuj, kým platí)
+
+while podmienka:
+    # opakuj, kým je True
+
+💎Príklad:
+x = 0
+while x < 3:
+    print(x)
+    x += 1
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🔹 4. TRY / EXCEPT / FINALLY – ošetrenie chýb
+Zachytáva chyby, aby program nespadol.
+
+
+try:
+    x = int("abc")
+except ValueError:
+    print("Chyba: nie je to číslo!")
+finally:
+    print("Koniec bloku try.")
+
+
+💎Viac typov chýb:
+try:
+    x = 10 / 0
+except ZeroDivisionError:
+    print("Delenie nulou!")
+except Exception as e:
+    print("Iná chyba:", e)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🔹 5. MATCH / CASE – rozhodovanie (Python 3.10+)
+Podobné ako switch v iných jazykoch.
+
+x = 2
+
+match x:
+    case 1:
+        print("Jedna")
+    case 2:
+        print("Dva")
+    case _:
+        print("Neznáme číslo")
+
+💎Zložitejší príklad:
+match (status, code):
+    case ("OK", 200):
+        print("Všetko v poriadku")
+    case ("ERROR", c) if c >= 500:
+        print("Server error:", c)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🔹 6. DEF – funkcie
+
+def pozdrav(meno):
+    print(f"Ahoj, {meno}!")
+
+pozdrav("Mia")
+
+💎S návratovou hodnotou:
+def sucet(a, b):
+    return a + b
+
+print(sucet(2, 3))
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🔹 7. CLASS – objekty a triedy
+
+class Zviera:
+    def __init__(self, meno):
+        self.meno = meno
+
+    def zvuk(self):
+        print(f"{self.meno} vydáva zvuk")
+
+pes = Zviera("Brok")
+pes.zvuk()
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🔹 8. IMPORT – moduly
+
+import math
+print(math.sqrt(16))  # 4.0
+
+from math import sqrt
+print(sqrt(9))  # 3.0
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🔹 9. INPUT / OUTPUT
+
+meno = input("Zadaj meno: ")
+print("Ahoj,", meno)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🔹 10. LIST – práca so zoznamom
+
+ovoce = ["jablko", "banán", "hruška"]
+ovoce.append("kiwi")   # pridanie
+ovoce.remove("banán")  # odstránenie
+print(ovoce[0])        # prístup k prvku
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🔹 11. DOPLNKY – riadenie toku programu
+
+break      # ukončí cyklus
+continue   # preskočí aktuálne kolo cyklu
+pass       # nič nerobí (placeholder)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🧠 Rýchle zhrnutie
+Kľúčové slovo	Význam
+if / elif / else	Podmienky
+for	Opakovanie cez prvky
+while	Opakovanie podľa podmienky
+try / except / finally	Ošetrenie chýb
+match / case	Rozhodovanie
+def	Funkcie
+class	Triedy (objekty)
+import	Načítanie modulov
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+break / continue / pass	Riadenie priebehu cyklu
+
