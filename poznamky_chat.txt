@@ -33,15 +33,15 @@
                                                 return HttpResponse('Hello World!')
                             
 8. Vytvorenie urlpattern:
-    8.1 mysite/urls.py
+                8.1 mysite/urls.py
 
-    from django.contrib import admin
-    from django.urls import path, include
+                from django.contrib import admin
+                from django.urls import path, include
 
-    urlpatterns = [
-        path('admin/', admin.site.urls),
-        path('skuska/', include('skuska.urls')),
-    ]
+                urlpatterns = [
+                    path('admin/', admin.site.urls),
+                    path('skuska/', include('skuska.urls')),
+                ]
 
     8.2 
         -vytvoriť súbor urls.py v priečinku aplikácie (skuska):
