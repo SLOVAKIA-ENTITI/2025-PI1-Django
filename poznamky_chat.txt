@@ -26,14 +26,9 @@
                                                     'django.contrib.staticfiles',
                                                     'nazov_aplikácie',
                                                 ]
-
-7. Vytvorenie jednoduchého views (skuska/views.py):
-                                            from django.shortcuts import render, HttpResponse
-                                            def index(request):
-                                                return HttpResponse('Hello World!')
                             
-8. Vytvorenie urlpattern:
-                8.1 mysite/urls.py
+7. Vytvorenie urlpattern:
+                7.1 mysite/urls.py
 
                 from django.contrib import admin
                 from django.urls import path, include
@@ -43,35 +38,21 @@
                     path('skuska/', include('skuska.urls')),
                 ]
 
-    8.2 
-        -vytvoriť súbor urls.py v priečinku aplikácie (skuska):
-        -upraviť urls.py: 
-                        from django.urls import path
-                        from . import views
+                7.2 
+                    -vytvoriť súbor urls.py v priečinku aplikácie (skuska):
+                    -upraviť urls.py: 
+                                    from django.urls import path
+                                    from . import views
+            
+                                    urlpatterns = [
+                                        path('', views.index, name='index'),
+                                    ]
 
-                        urlpatterns = [
-                            path('', views.index, name='index'),
-                        ]
-
-
-
-9. Setup Git push/commit: 
-                    $ git config --global user.name "Matúš Paškala" 
-                    $ git config --global user.email "mpaskala08@gmail.com"
-
-10. Do priečinku:
-            $ cd pokusp
-
-
-
-
-
-
-11. Template:
-            11.1:
+8. Template:
+            8.1:
                 Vytvoriť v priečinku aplikácie priečinok templates/nazov_aplikácie
                 V tomto pričink vytvoriť html súbor (napr. index.html)
-            11.2:
+            8.2:
                 Upraviť views tak aby používal template  
                     from django.shortcuts import render
                     def index(request):
@@ -80,7 +61,7 @@
                         apar = "Cislo A je parne"
                         return render(request, 'kalkulacka/index.html', {"sucet":sucet ,"sucin":sucin, "apar":apar})  ALEBO  return render(request, 'kalkulacka/index.html', dict(kluc = sucet))
  
-12. CSS, obrázky:
+9. CSS, obrázky:
                 Vytvoriť v priečinoku aplikácie priečinok static/nazov_aplikácie
                 V tomto priečinku vytvoriť CSS (napr. kalkulacka.css)
                 Do tohot priečinku nakopírovať obrázky
