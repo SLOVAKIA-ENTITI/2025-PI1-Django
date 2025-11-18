@@ -266,12 +266,11 @@ def index(request):
     vysledok = 0
     if request.method == "POST":
         try:
-            a = str(request.POST["a"])
-            b = map(int, str(a))
+            a = int(request.POST["a"])
             vysledok = 0
 
-            for cislo in b:
-                vysledok = vysledok + cislo
+            for cislo in a:
+                vysledok = vysledok + int(cislo)
         
             
         except Exception as e:
