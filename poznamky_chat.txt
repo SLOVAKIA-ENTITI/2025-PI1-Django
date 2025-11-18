@@ -179,7 +179,6 @@ def index(request):
         except Exception as e:
             vysledok = f"Chyba: {e}"
 
-    # 🔹 Render mimo try, aby sa vykonal vždy
     return render(request, 'prvocislo/index.html', {
         "vysledok": vysledok,
 
