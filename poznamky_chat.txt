@@ -1,144 +1,280 @@
-1. Inštalácia Django
-pip install Django
-pip list
+1. Inštalácia Django do python:
+                            pip install Django
+                            pip list
+
+2. Vytvorenie Django projektu:
+                            django-admin startproject nazov_projektu .
+
+3. Nastavenie slovenčiny pre projekt (mysite/settings.py):
+                                                   LANGUAGE_CODE = 'sk'
+                                                   TIME_ZONE = 'Europe/Bratislava' 
+
+4. Spustenie vývojového serveru:
+                            python manage.py runserver
+                            python.exe .\manage.py runserver
+
+5. Vytvorenie aplikácie:
+                    python manage.py startapp skuska
+
+6. Zaregistrovanie aplikácie do projektu (mysite/settings.py):
+                                                    INSTALLED_APPS = [
+                                                    'django.contrib.admin',
+                                                    'django.contrib.auth',
+                                                    'django.contrib.contenttypes',
+                                                    'django.contrib.sessions',
+                                                    'django.contrib.messages',
+                                                    'django.contrib.staticfiles',
+                                                    'nazov_aplikácie',
+                                                ]
+
+7. Vytvorenie jednoduchého views (skuska/views.py):
+                                            from django.shortcuts import render, HttpResponse
+                                            def index(request):
+                                                return HttpResponse('Hello World!')
+                            
+8. Vytvorenie urlpattern:
+    8.1 mysite/urls.py
+
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('skuska/', include('skuska.urls')),
+    ]
+
+    8.2 
+        -vytvoriť súbor urls.py v priečinku aplikácie (skuska):
+        -upraviť urls.py: 
+                        from django.urls import path
+                        from . import views
+
+                        urlpatterns = [
+                            path('', views.index, name='index'),
+                        ]
 
 
-➡️ pip install Django nainštaluje framework.
-➡️ pip list ti ukáže, že sa Django pridalo medzi nainštalované knižnice.
 
-2. Vytvorenie projektu
-django-admin startproject nazov_projektu .
+9. Setup Git push/commit: 
+                    $ git config --global user.name "Matúš Paškala" 
+                    $ git config --global user.email "mpaskala08@gmail.com"
 
-
-➡️ startproject vytvorí priečinok s konfiguráciou Django projektu.
-➡️ Bodka (.) na konci znamená: „vytvor projekt v aktuálnom priečinku“.
-
-3. Nastavenie slovenčiny a času
-
-V mysite/settings.py:
-
-LANGUAGE_CODE = 'sk'
-TIME_ZONE = 'Europe/Bratislava'
+10. Do priečinku:
+            $ cd pokusp
 
 
-➡️ Nastaví jazyk používateľského rozhrania (napr. dátumy, hlásenia).
-➡️ Zóna zabezpečí správny čas pri ukladaní dát.
-
-4. Spustenie vývojového servera
-python manage.py runserver
 
 
-➡️ Spustí lokálny server (localhost) – stránka sa otvorí na:
-http://127.0.0.1:8000/
-
-5. Vytvorenie aplikácie
-python manage.py startapp skuska
 
 
-➡️ Každá aplikácia = jedna funkčná časť projektu (napr. „skuska“, „blog“, „eshop“).
-➡️ Django projekt môže mať viac aplikácií.
-
-6. Zaregistrovanie aplikácie
-
-V settings.py:
-
-INSTALLED_APPS = [
-    ...
-    'skuska',
-]
-
-
-➡️ Django tak vie, že aplikáciu má načítať a používať jej modely, šablóny, atď.
-
-7. Prvé „view“ – logika stránky
-
-skuska/views.py:
-
-from django.shortcuts import render, HttpResponse
-
-def index(request):
-    return HttpResponse('Hello World!')
-
-
-➡️ index je funkcia, ktorá spracuje požiadavku z prehliadača a vráti odpoveď.
-➡️ HttpResponse() pošle jednoduchý text do prehliadača.
-
-8. URL smerovanie
-a) Hlavné URL (mysite/urls.py)
-from django.contrib import admin
-from django.urls import path, include
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('skuska/', include('skuska.urls')),
-]
+11. Template:
+            11.1:
+                Vytvoriť v priečinku aplikácie priečinok templates/nazov_aplikácie
+                V tomto pričink vytvoriť html súbor (napr. index.html)
+            11.2:
+                Upraviť views tak aby používal template  
+                    from django.shortcuts import render
+                    def index(request):
+                        sucet = 10 + 5
+                        sucin = 10*5
+                        apar = "Cislo A je parne"
+                        return render(request, 'kalkulacka/index.html', {"sucet":sucet ,"sucin":sucin, "apar":apar})  ALEBO  return render(request, 'kalkulacka/index.html', dict(kluc = sucet))
+ 
+12. CSS, obrázky:
+                Vytvoriť v priečinoku aplikácie priečinok static/nazov_aplikácie
+                V tomto priečinku vytvoriť CSS (napr. kalkulacka.css)
+                Do tohot priečinku nakopírovať obrázky
+                Do template (index.html) doplniť: 
+                                            úplne na začiatok {% load static %}
+                                            do hlavičky odkaz na style
+                                                    <head>
+                                                        <link rel="stylesheet" href="{% static 'kalkulacka/kalkulacka.css' %}">
+                                                    </head>
+                Obrázok vložiť:
+                        <img src={% static 'kalkulacka/calc.png' %}>
 
 
-➡️ Hovorí, že keď používateľ ide na /skuska/, Django má hľadať cesty v aplikácii skuska.
-
-b) URL aplikácie (skuska/urls.py)
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('', views.index, name='index'),
-]
 
 
-➡️ Keď používateľ ide na /skuska/, zavolá sa funkcia index z views.py.
-
-9. Nastavenie Gitu
-git config --global user.name "Matúš Paškala"
-git config --global user.email "mpaskala08@gmail.com"
 
 
-➡️ Git si ťa „zapamätá“ ako autora všetkých commitov.
-Potom môžeš projekt commitovať a posielať na GitHub.
 
-11. Templates (HTML šablóny)
-🔹 Vytvor priečinok:
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-skuska/templates/skuska/index.html
+Faktorial
 
-🔹 Upravený view:
+---------------------------------------------------------------------------------------------------------
+
+views
+
 from django.shortcuts import render
 
 def index(request):
-    sucet = 10 + 5
-    sucin = 10 * 5
-    apar = "Cislo A je parne"
-    return render(request, 'skuska/index.html', {
-        "sucet": sucet,
-        "sucin": sucin,
-        "apar": apar
+    vysledok = 0
+    a = 0
+    if request.method == "POST":
+        try:
+            a = float(request.POST["a"])
+            def faktorial(a):
+                if a == 0:
+                    return 1
+                else :
+                    return a * faktorial(a - 1)
+                
+            vysledok = (f"Faktoriál čísla je: {faktorial(a)}")
+        except Exception as e:
+            vysledok = f"Chyba: {e}"
+    return render(request, 'faktorial/index.html', {"vysledok": vysledok,})
+
+---------------------------------------------------------------------------------------------------------
+index
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faktorial</title>
+</head>
+<body>
+    <h1>Faktoriál</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="number" name="a">
+        <input type="submit" class="odosli">
+    </form>
+    <h2>{{vysledok}}</h2>
+</body>
+</html>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Prvocislo
+
+from django.shortcuts import render
+
+def index(request):
+    vysledok = ""
+   
+    if request.method == "POST":
+        try:
+            a = float(request.POST["a"])
+            if a <= 1:
+                prvocisloa = False
+            else:
+                prvocisloa = True
+                for i in range(2, int(a)):
+                    if a % i == 0:
+                        prvocisloa = False
+                        break
+
+            if prvocisloa:
+                vysledok = (f"{a} je prvočíslo")
+            else:
+                vysledok = (f"{a} nie je prvočíslo")
+
+          
+
+        except Exception as e:
+            vysledok = f"Chyba: {e}"
+
+    # 🔹 Render mimo try, aby sa vykonal vždy
+    return render(request, 'prvocislo/index.html', {
+        "vysledok": vysledok,
+
     })
 
 
-➡️ render() načíta HTML šablónu a pošle do nej údaje (context) vo forme slovníka.
-➡️ V HTML sa k nim dostaneš cez {{ sucet }}, {{ apar }} atď.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-12. CSS a obrázky (static files)
-🔹 Vytvor:
-skuska/static/skuska/kalkulacka.css
-skuska/static/skuska/calc.png
-
-🔹 V HTML:
-{% load static %}
-<head>
-    <link rel="stylesheet" href="{% static 'skuska/kalkulacka.css' %}">
-</head>
-<body>
-    <img src="{% static 'skuska/calc.png' %}">
-</body>
+Vek
 
 
-➡️ {% load static %} je Django tag, ktorý umožní používať statické súbory (CSS, JS, obrázky).
-➡️ V ceste vždy uvádzaš názov_aplikácie/názov_súboru.
+from django.shortcuts import render
+from datetime import date
 
-✅ Zhrnutie:
+def index(request):
+    a = 0
+    vysledok = 0
+    den = 0
+    mesiac = 0
+    rok = 0
+    if request.method == "POST":
+        try:
+            a = str(request.POST["meno"])
+            datum = str(request.POST["date"])
+            vysledok = 0
+            def calculateAge(birthDate):
+                today = date.today()
+                age = today.year - birthDate.year - ((today.month, today.day) < (birthDate.month, birthDate.day))
 
-Django = rámec, kde project = celý web a app = jedna jeho časť.
+                return age
+            
+            den = datum[:2]
+            den = int(den)
+            mesiac = datum[2:4]
+            mesiac = int(mesiac)
+            rok = datum[4:8]
+            if mesiac == 1:
+                mesiac = "Január"
+            elif mesiac == 2:
+                mesiac = "Február"
+            elif mesiac == 3:
+                mesiac = "Marec"
+            elif mesiac == 4:
+                mesiac = "Apríl"
+            elif mesiac == 5:
+                mesiac = "Máj"
+            elif mesiac == 6:
+                mesiac = "Jún"
+            elif mesiac == 7:
+                mesiac = "Júl"
+            elif mesiac == 8:
+                mesiac = "August"
+            elif mesiac == 9:
+                mesiac = "September"
+            elif mesiac == 10:
+                mesiac = "Október"
+            elif mesiac == 11:
+                mesiac = "November"
+            elif mesiac == 12:
+                mesiac = "December"
+            elif mesiac > 12:
+                mesiac = "Neexistujúci mesiac"
 
-Logika ide do views, cesty do urls, vzhľad do templates, CSS/obrázky do static.
 
-Server spúšťaš cez python manage.py runserver.
+            vysledok = (f"Ahoj {a} tvoj dátum narodenia je: {den}. {mesiac} {rok}.")
+            if den > 31 or mesiac == "Neexistujúci mesiac":
+                vysledok = "Chyba!!!!!"
+            else:
+                vysledok = (f"Ahoj {a} tvoj dátum narodenia je: {den}. {mesiac} {rok}.")
+            
+            
+        except Exception as e:
+            vysledok = f"Chyba: {e}"
+    return render(request, 'vek/index.html', {"vysledok": vysledok, "den": den, "mesiac": mesiac, "rok": rok,})
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ciferny sucet
+
+
+from django.shortcuts import render
+
+def index(request):
+    a = 0
+    vysledok = 0
+    if request.method == "POST":
+        try:
+            a = str(request.POST["a"])
+            b = map(int, str(a))
+            vysledok = 0
+
+            for cislo in b:
+                vysledok = vysledok + cislo
+        
+            
+        except Exception as e:
+            vysledok = f"Chyba: {e}"
+    return render(request, 'ciferny_sucet/index.html', {"vysledok": vysledok,})
