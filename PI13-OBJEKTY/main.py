@@ -131,6 +131,12 @@ for i in range(10):
 print("---------------------------------")
 print("Učitelia:")
 
+triedy_pre_ucitelov = [
+    "I.AI", "I.BI", "I.CI", "I.AT","I.AG",
+    "II.AI", "II.BI", "II.CI", "II.AT","II.AG",
+    "III.AI", "III.BI", "III.CI", "III.AT","III.AG",
+    "IV.AI", "IV.BI", "IV.CI", "IV.AG", "IV.AT"
+]
 
 for i in range(10):
     priezvisko = random.choice(priezviska)
@@ -138,5 +144,9 @@ for i in range(10):
     titul_vyber = random.choice(titul)
     predmet_vyber = random.choice(predmet)
     rok_vyber = random.choice(rok)
-    ucitel = Ucitel(meno, priezvisko, rok_vyber, titul_vyber, predmet_vyber)
+
+    trieda_ucitel = random.choice(triedy_pre_ucitelov)   
+    triedy_pre_ucitelov.remove(trieda_ucitel)            
+
+    ucitel = Ucitel(meno, priezvisko, rok_vyber, titul_vyber, predmet_vyber, trieda_ucitel)
     print(ucitel)
