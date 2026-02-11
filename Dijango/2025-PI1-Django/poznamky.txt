@@ -16,7 +16,7 @@
 5. Vytvorenie aplikácie:
                     python manage.py startapp skuska
 
-6. Zaregistrovanie aplikácie do projektu (mysite/settings.py):
+6. Zaregistrovanie aplikácie do projektu (mysite/settings.py):     //mysite == pokus
                                                     INSTALLED_APPS = [
                                                     'django.contrib.admin',
                                                     'django.contrib.auth',
