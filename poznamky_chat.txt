@@ -56,8 +56,27 @@
                         sucin = 10*5
                         apar = "Cislo A je parne"
                         return render(request, 'kalkulacka/index.html', {"sucet":sucet ,"sucin":sucin, "apar":apar})  ALEBO  return render(request, 'kalkulacka/index.html', dict(kluc = sucet))
- 
-8. CSS, obrázky:
+
+8. Views:
+          from django.shortcuts import render
+          from .models import Kruzok
+          
+          DNI = ['pondelok', 'utorok', 'streda', 'štvrtok', 'piatok', 'sobota', 'nedeľa']
+          
+          def poradie(k):
+              return DNI.index(k.den) if k.den in DNI else 99
+          
+          def zoznam_kruzkov(request):
+              kruzky = sorted(Kruzok.objects.all(), key=poradie)
+              return render(request, 'kruzky/index.html', {'kruzky': kruzky})
+
+
+
+
+
+
+
+9. CSS, obrázky:
                 Vytvoriť v priečinoku aplikácie priečinok static/nazov_aplikácie
                 V tomto priečinku vytvoriť CSS (napr. kalkulacka.css)
                 Do tohot priečinku nakopírovať obrázky
