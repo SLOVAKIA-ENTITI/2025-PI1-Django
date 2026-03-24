@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>Zoznam krúžkov</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .empty-msg { color: red; font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <h2>Ponuka záujmových krúžkov</h2>
+
+    {% if kruzky %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Názov krúžku</th>
+                    <th>Deň</th>
+                    <th>Miestnosť</th>
+                    <th>Meno vedúceho</th>
+                    <th>E-mail vedúceho</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for kruzok in kruzky %}
+                <tr>
+                    <td>{{ kruzok.nazov }}</td>
+                    <td>{{ kruzok.den }}</td>
+                    <td>{{ kruzok.miestnost }}</td>
+                    <td>{{ kruzok.veduci.meno }}</td>
+                    <td><a href="mailto:{{ kruzok.veduci.email }}">{{ kruzok.veduci.email }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="empty-msg">Žiadne krúžky nie sú dostupné.</p>
+    {% endif %}
+
+</body>
+</html>
