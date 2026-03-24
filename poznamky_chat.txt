@@ -63,8 +63,11 @@
           
           DNI = ['pondelok', 'utorok', 'streda', 'štvrtok', 'piatok', 'sobota', 'nedeľa']
           
-          def poradie(k):
-              return DNI.index(k.den) if k.den in DNI else 99
+          def poradie(kruzok):
+            if kruzok.den in DNI:
+                return DNI.index(kruzok.den)
+            else:
+                return 99
           
           def zoznam_kruzkov(request):
               kruzky = sorted(Kruzok.objects.all(), key=poradie)
