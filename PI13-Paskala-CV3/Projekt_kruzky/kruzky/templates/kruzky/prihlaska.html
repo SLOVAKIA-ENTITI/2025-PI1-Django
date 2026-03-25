@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prihláška</title>
+
+    <style>
+:root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card-2: #111827;
+    --text: #e5e7eb;
+    --text-2: #94a3b8;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* TOPBAR */
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 25px;
+    background: var(--card-2);
+    border-bottom: 1px solid #243042;
+}
+
+.topbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+}
+
+.topbar-title {
+    color: var(--text-2);
+}
+
+/* MAIN */
+.main {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* HEADER */
+.page-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-size: 32px;
+    margin: 0;
+}
+
+.page-header p {
+    color: var(--text-2);
+}
+
+/* FORM */
+form {
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* INPUT CARDS */
+.stat-card {
+    background: var(--card);
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 1px solid #243042;
+}
+
+.stat-card label {
+    font-size: 13px;
+    color: var(--text-2);
+}
+
+/* INPUTY (Django fields) */
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    background: #0b1220;
+    color: white;
+    outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+}
+
+/* BUTTON */
+.filter-btn {
+    background: var(--accent);
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filter-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+/* BACK BUTTON */
+.back {
+    margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+    <div class="topbar-logo">
+        <div class="dot"></div>
+        Škola
+    </div>
+    <div class="topbar-divider"></div>
+    <span class="topbar-title">Prihláška na krúžok</span>
+</nav>
+
+<main class="main">
+
+    <div class="page-header">
+        <h1>Prihláška</h1>
+        <p>Vyplň údaje pre prihlásenie</p>
+    </div>
+
+    <form method="POST" style="max-width:520px; display:flex; flex-direction:column; gap:12px;">
+        {% csrf_token %}
+
+        <div class="stat-card">
+            <label style="font-size:13px; color:var(--text-2);">Meno</label>
+            {{ form.meno }}
+        </div>
+
+        <div class="stat-card">
+            <label style="font-size:13px; color:var(--text-2);">Email</label>
+            {{ form.email }}
+        </div>
+
+        <div class="stat-card">
+            <label style="font-size:13px; color:var(--text-2);">Krúžok</label>
+            {{ form.kruzok }}
+        </div>
+
+        <div class="stat-card">
+            <label style="font-size:13px; color:var(--text-2);">Správa</label>
+            {{ form.sprava }}
+        </div>
+
+        <button type="submit" class="filter-btn" style="margin-top:10px;">
+            Odoslať prihlášku
+        </button>
+    </form>
+
+    <div style="margin-top:20px;">
+        <a href="{% url 'zoznam_kruzkov' %}" class="filter-btn">← Späť</a>
+    </div>
+
+</main>
+
+</body>
+</html>

@@ -1,7 +1,10 @@
 import re
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
 from .models import Kruzok
+from .forms import PrihlaskaForm 
+from .forms import KruzokForm
 
 PORADIE_DNI = {
     'pondelok': 1,
@@ -75,3 +78,36 @@ def zoznam_kruzkov(request):
         'kruzky': vsetky_kruzky,
         'pocet_veducich': pocet_veducich
     })
+
+
+
+
+def prihlaska_view(request):
+    initial = {}
+
+    # z URL: ?kruzok=ID
+    kruzok_id = request.GET.get('kruzok')
+    if kruzok_id:
+        initial['kruzok'] = kruzok_id
+
+    form = PrihlaskaForm(request.POST or None, initial=initial)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect('success')
+
+    return render(request, 'kruzky/prihlaska.html', {
+        'form': form
+    })
+def pridat_kruzok_view(request):
+    form = KruzokForm(request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect('zoznam_kruzkov')
+
+    return render(request, 'kruzky/pridat_kruzok.html', {'form': form})
+
+
+def success_view(request):
+    return render(request, 'kruzky/success.html')

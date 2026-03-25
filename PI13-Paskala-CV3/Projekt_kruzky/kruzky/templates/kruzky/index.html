@@ -663,6 +663,12 @@
     <span class="topbar-badge" id="count-badge">
         {% if kruzky %}{{ kruzky|length }} krúžkov{% else %}0 krúžkov{% endif %}
     </span>
+    <a href="{% url 'prihlaska' %}?kruzok={{ kruzok.id }}" class="filter-btn">
+    Prihlásiť sa
+</a>
+<a href="{% url 'pridat_kruzok' %}" class="filter-btn">
+    + Pridať krúžok
+</a>
 </nav>
 
 <main class="main">

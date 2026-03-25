@@ -17,3 +17,9 @@ class Kruzok(models.Model):
     def __str__(self):
         return self.nazov
         
+
+class Prihlaska(models.Model):
+    meno = models.CharField(max_length=100)
+    email = models.EmailField()
+    kruzok = models.ForeignKey(Kruzok, on_delete=models.CASCADE)
+    sprava = models.TextField(blank=True)
