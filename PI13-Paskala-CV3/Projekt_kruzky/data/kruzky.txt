@@ -1,0 +1,50 @@
+Futbal;Pondelok 16:00;telocvična
+Basketbal;Streda 15:00;telocvična
+Šach;Utorok 14:00;učebňa 12
+Maľovanie;Piatok 15:30;ateliér
+Kreslenie;Streda 13:00;ateliér
+Programovanie;Štvrtok 15:00;počítačová učebňa
+Robotika;Pondelok 14:30;dielňa
+Spevácky zbor;Utorok 16:00;hudobňa
+Divadelný krúžok;Piatok 14:00;aula
+Matematický krúžok;Streda 14:00;učebňa 5
+Minecraft;Pondelok 15:00;počítačová učebňa
+League of Legends;Utorok 16:30;počítačová učebňa
+Valorant;Streda 16:00;počítačová učebňa
+3D Tlač;Štvrtok 14:00;dielňa
+Arduino;Piatok 15:00;dielňa
+Drone Racing;Pondelok 13:30;telocvična
+RC Autá;Utorok 15:00;dielňa
+Motošport;Streda 14:30;učebňa 3
+Karting;Štvrtok 16:00;učebňa 3
+Animácia;Piatok 13:00;počítačová učebňa
+Grafický dizajn;Pondelok 14:00;počítačová učebňa
+YouTube tvorba;Utorok 14:30;mediálna učebňa
+Podcast;Streda 15:30;mediálna učebňa
+Fotografický krúžok;Štvrtok 13:00;mediálna učebňa
+Videostrih;Piatok 16:00;mediálna učebňa
+Volejbal;Pondelok 16:30;telocvična
+Stolný tenis;Utorok 13:00;telocvična
+Bedminton;Streda 16:30;telocvična
+Plávanie;Štvrtok 14:30;bazén
+Atletika;Piatok 15:00;ihrisko
+Cyber Security;Pondelok 15:30;počítačová učebňa
+Python programovanie;Utorok 15:30;počítačová učebňa
+Webdizajn;Streda 13:30;počítačová učebňa
+Elektronika;Štvrtok 15:30;dielňa
+Lego Technic;Piatok 14:30;dielňa
+Stolové hry;Pondelok 13:00;učebňa 12
+Rubikova kocka;Utorok 13:30;učebňa 12
+Fyzikálny krúžok;Streda 14:00;učebňa 5
+Astronomický krúžok;Štvrtok 13:30;učebňa 5
+Chemický krúžok;Piatok 13:30;laboratórium
+Florbal;Pondelok 17:00;telocvična
+Hokej;Utorok 17:00;telocvična
+Posilňovanie;Streda 17:00;posilňovňa
+Crossfit;Štvrtok 17:00;posilňovňa
+Bojové umenia;Piatok 17:00;telocvična
+Gitara;Pondelok 14:00;hudobňa
+Bicie;Utorok 14:00;hudobňa
+Klavír;Streda 13:00;hudobňa
+DJ a Hudba;Štvrtok 16:30;hudobňa
+Cosplay a Kostýmy;Piatok 16:30;ateliér

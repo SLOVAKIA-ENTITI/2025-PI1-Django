@@ -48,30 +48,30 @@ def zisti_cas(den_string):
 
 def zoznam_kruzkov(request):
     vsetky_kruzky = list(Kruzok.objects.all())
+    
+    # PRidaný výpočet vedúcich (pôvodne bol v inej funkcii)
+    pocet_veducich = Kruzok.objects.values('veduci').distinct().count()
 
     rad_od_teraz = request.GET.get('od_teraz') == '1'
 
     if rad_od_teraz:
         now = datetime.now()
-        aktualny_den = now.weekday() + 1
-        aktualny_cas = now.time()
-
+        # ... tvoj kód pre zoradenie od teraz ...
         def sort_key_aktualne(kruzok):
             den_kruzku = zisti_najskorsi_den(kruzok.den)
-            cas_kruzku = zisti_cas(kruzok.den) # Extrahuje čas z textu
-            
-            # Posun do ďalšieho týždňa, ak už krúžok bol
-            if den_kruzku < aktualny_den or (den_kruzku == aktualny_den and cas_kruzku < aktualny_cas):
-                rozdiel_dni = (den_kruzku - aktualny_den) + 7
+            cas_kruzku = zisti_cas(kruzok.den)
+            if den_kruzku < (now.weekday() + 1) or (den_kruzku == (now.weekday() + 1) and cas_kruzku < now.time()):
+                rozdiel_dni = (den_kruzku - (now.weekday() + 1)) + 7
             else:
-                rozdiel_dni = den_kruzku - aktualny_den
-
+                rozdiel_dni = den_kruzku - (now.weekday() + 1)
             return (rozdiel_dni, cas_kruzku)
 
         vsetky_kruzky.sort(key=sort_key_aktualne)
-
     else:
-        # Štandardné zoradenie - funkcia zavolá extrakciu dňa aj času pre každý objekt
         vsetky_kruzky.sort(key=lambda x: (zisti_najskorsi_den(x.den), zisti_cas(x.den)))
 
-    return render(request, 'kruzky/index.html', {'kruzky': vsetky_kruzky})
+    # Posielame kruzky AJ pocet_veducich v jednom balíku (context)
+    return render(request, 'kruzky/index.html', {
+        'kruzky': vsetky_kruzky,
+        'pocet_veducich': pocet_veducich
+    })
