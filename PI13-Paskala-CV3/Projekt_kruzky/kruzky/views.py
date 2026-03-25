@@ -1,7 +1,7 @@
 import re
 from datetime import datetime
 from django.shortcuts import render, redirect
-
+from django.shortcuts import get_object_or_404, redirect
 from .models import Kruzok
 from .forms import PrihlaskaForm 
 from .forms import KruzokForm
@@ -111,3 +111,8 @@ def pridat_kruzok_view(request):
 
 def success_view(request):
     return render(request, 'kruzky/success.html')
+
+def zmazat_kruzok(request, id):
+    kruzok = get_object_or_404(Kruzok, id=id)
+    kruzok.delete()
+    return redirect('zoznam_kruzkov')

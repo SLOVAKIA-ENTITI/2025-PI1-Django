@@ -6,8 +6,7 @@ class PrihlaskaForm(forms.ModelForm):
         model = Prihlaska
         fields = ['meno', 'email', 'kruzok', 'sprava']
 
-
 class KruzokForm(forms.ModelForm):
     class Meta:
         model = Kruzok
-        fields = ['nazov', 'den', 'veduci']
+        fields = ['nazov', 'den', 'veduci', 'miestnost']

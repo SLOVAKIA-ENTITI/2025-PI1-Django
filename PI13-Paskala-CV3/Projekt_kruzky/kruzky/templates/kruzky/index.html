@@ -648,6 +648,98 @@
             .list-item { grid-template-columns: 36px 1fr auto; }
             .list-room, .list-leader { display: none; }
         }
+        /* ── TOP BUTTONS (Prihlásiť + Pridať krúžok) ── */
+
+.topbar-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.topbar-btn {
+    height: 34px;
+    padding: 0 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-md);
+    background: var(--surface);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.topbar-btn:hover {
+    background: var(--surface2);
+    transform: translateY(-1px);
+}
+
+/* PRVÉ tlačidlo (Prihlásiť sa) */
+.topbar-btn.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.topbar-btn.primary:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+/* DRUHÉ tlačidlo (Pridať krúžok) */
+.topbar-btn.secondary {
+    background: var(--surface);
+    color: var(--text);
+}
+/* ── DELETE BUTTON ── */
+
+.delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+
+    background: var(--red-bg);
+    color: var(--red-text);
+
+    border: 1px solid rgba(220, 38, 38, 0.25);
+
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: all 0.15s ease;
+}
+
+.delete-btn:hover {
+    background: var(--red);
+    color: white;
+    border-color: var(--red);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25);
+}
+
+.delete-btn:active {
+    transform: translateY(0px);
+    box-shadow: none;
+}
+
+/* malá ikonka koša (voliteľné) */
+.delete-btn svg {
+    width: 14px;
+    height: 14px;
+}
     </style>
 </head>
 <body>
@@ -663,12 +755,15 @@
     <span class="topbar-badge" id="count-badge">
         {% if kruzky %}{{ kruzky|length }} krúžkov{% else %}0 krúžkov{% endif %}
     </span>
-    <a href="{% url 'prihlaska' %}?kruzok={{ kruzok.id }}" class="filter-btn">
-    Prihlásiť sa
-</a>
-<a href="{% url 'pridat_kruzok' %}" class="filter-btn">
-    + Pridať krúžok
-</a>
+    <div class="topbar-actions">
+    <a href="{% url 'prihlaska' %}" class="topbar-btn primary">
+        Prihlásiť sa
+    </a>
+
+    <a href="{% url 'pridat_kruzok' %}" class="topbar-btn secondary">
+        + Pridať krúžok
+    </a>
+</div>
 </nav>
 
 <main class="main">
@@ -780,6 +875,15 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
                 </button>
             </div>
+            <a href="{% url 'zmazat_kruzok' kruzok.id %}" class="delete-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-2 14H7L5 6"/>
+                    <path d="M10 11v6M14 11v6"/>
+                    <path d="M9 6V4h6v2"/>
+                </svg>
+                Zmazať
+            </a>
         </div>
         {% endfor %}
     </div>
